@@ -16,6 +16,7 @@ public class Main {
                     System.out.println("The system is full!\nYou can no longer register people...");
                 }
                 else{
+                    clear();
                     people[numberOfPeople]=new Person("", 0, "", "");
                     System.out.println("Type name:");
                     String name=sc.next();
@@ -38,6 +39,7 @@ public class Main {
                     System.out.println("The system is empty!\nThere is no one to remove...");
                 }
                 else{
+                    clear();
                     System.out.println("Type the number of the person you want to remove:");
                     int remove=sc.nextInt();
                     people[remove-1]=null;
@@ -58,10 +60,15 @@ public class Main {
                 keepRunning=0;
                 break;
             default:
+                clear();
                 System.out.println("Invalid...\nTry again!");
                 System.out.println("======================");
                 break;
        }
     }
 }
+    public static void clear(){
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+    }
 }

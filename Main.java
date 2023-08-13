@@ -1,10 +1,11 @@
-package OOP;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         int numberOfPeople=0;
-        Person[] people=new Person[5];
+        List<Person>people=new ArrayList<>();
         int keepRunning=1;
         while (keepRunning==1) {
         System.out.println("What you want to do?\n1-Register a person\n2-Remove a person\n3-Show registred people\n4-Leave");
@@ -17,19 +18,15 @@ public class Main {
                 }
                 else{
                     clear();
-                    people[numberOfPeople]=new Person("", 0, "", "");
                     System.out.println("Type name:");
                     String name=sc.next();
-                    //System.out.println("Type age:");
-                    //int age=sc.nextInt();
-                    //System.out.println("Type job:");
-                    //String job=sc.next();
-                    //System.out.println("Type sex:");
-                    //String sex=sc.next();
-                    people[numberOfPeople].nameset(name);
-                    //people[numberOfPeople].ageset(age);
-                    //people[numberOfPeople].jobset(job);
-                    //people[numberOfPeople].sexset(sex);
+                    System.out.println("Type age:");
+                    int age=sc.nextInt();
+                    System.out.println("Type job:");
+                    String job=sc.next();
+                    System.out.println("Type sex:");
+                    String sex=sc.next();
+                    people.add(new Person(name,age,job,sex));
                     numberOfPeople++;
                 }
                 System.out.println("======================");
@@ -42,21 +39,29 @@ public class Main {
                     clear();
                     System.out.println("Type the number of the person you want to remove:");
                     int remove=sc.nextInt();
-                    people[remove-1]=null;
+                    people.remove(remove-1);
                     System.out.println("Person removed!");
                 }
                 System.out.println("======================");
                 break;
             case 3:
-                for (int atributes=0;atributes<numberOfPeople;atributes++ ) {
-                    System.out.println("Name:"+people[atributes].nameget());
-                    //System.out.println("Age:"+people[atributes].ageget());
-                    //System.out.println("Job:"+people[atributes].jobget());
-                    //System.out.println("Sex:"+people[atributes].sexget());
+                if(numberOfPeople==0){
+                    System.out.println("The system is empty!\nThere is no one to show...");
                     System.out.println("======================");
+                }
+                else{
+                    for (int i=0;i<people.size();i++ ) {
+                        System.out.println("Number:"+(i+1));
+                        System.out.println("Name:"+people.get(i).nameget());
+                        System.out.println("Age:"+people.get(i).ageget());
+                        System.out.println("Job:"+people.get(i).jobget());
+                        System.out.println("Sex:"+people.get(i).sexget());
+                        System.out.println("======================");
+                    }
                 }
                 break;
             case 4:
+                System.out.println("Farewell");
                 keepRunning=0;
                 break;
             default:

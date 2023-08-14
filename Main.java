@@ -41,6 +41,7 @@ public class Main {
                     int remove=sc.nextInt();
                     people.remove(remove-1);
                     System.out.println("Person removed!");
+                    numberOfPeople--;
                 }
                 System.out.println("======================");
                 break;
